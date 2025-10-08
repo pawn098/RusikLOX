@@ -10,11 +10,14 @@ class CatalogPage(BasePage):
         self.driver = driver
 
 #locator
+    product_omega = "(//button[text()='В корзину'])[1]"
     product_D3_2000_ME = "(//button[text()='В корзину'])[2]"
     cart = "//a[@class='header__control-btn header__cart']"
 
     def get_product_D3_2000_ME(self):
          return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.product_D3_2000_ME)))
+    def get_product_omega(self):
+         return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.product_omega)))
     def get_cart(self):
          return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.cart)))
 
@@ -25,6 +28,12 @@ class CatalogPage(BasePage):
         self.get_product_D3_2000_ME().click()
         self.get_cart().click()
         self.refresh_q()
+
+    def click_get_product_omega(self):
+        self.get_product_omega().click()
+        self.get_cart().click()
+        self.refresh_q()
+
 
 
 

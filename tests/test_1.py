@@ -9,7 +9,22 @@ def test_1(set_up):
     CP = CatalogPage(set_up)
     CP.click_get_product_D3_2000_ME_cart()
 
-    for i in range(20):
+    for i in range(2):
+
+        CARDP = CardPage(set_up)
+        CARDP.place_an_order()
+
+        PAOP = PlacePage(set_up)
+        PAOP.confirm_the_order()
+
+        FP = FinalyPage(set_up)
+        FP.click_button_repeat_order()
+
+def test_omega(set_up):
+    CP = CatalogPage(set_up)
+    CP.click_get_product_omega()
+
+    for i in range(2):
 
         CARDP = CardPage(set_up)
         CARDP.place_an_order()
