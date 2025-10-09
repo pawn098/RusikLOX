@@ -5,6 +5,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 options = webdriver.ChromeOptions()
 options.add_experimental_option('detach', True)
+options.add_argument("--headless")
 
 driver = webdriver.Chrome(options=options)
 driver.get('https://demoqa.com/text-box')
