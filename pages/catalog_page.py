@@ -25,19 +25,33 @@ class CatalogPage(BasePage):
 
     #Действие
 
-    # Добавить D3 в корзину и перейти в корзину
+    # Добавить D3 в Корзину и перейти в Корзину
     def click_get_product_D3_2000_ME_cart(self):
         self.get_product_D3_2000_ME().click()
         self.get_cart().click()
         self.refresh_q()
 
-    # Добавить Omega в корзину и перейти в корзину
+    # Добавить D3 в Корзину (мой)
+    def add_product_d3_in_cart(self):
+        self.get_product_D3_2000_ME().click()
+        print()
+        print("D3 добавлен в корзину")
+        time.sleep(3)  # Пауза для визуальной проверки
+
+
+    # Добавить Omega в Корзину и перейти в Корзину
     def click_get_product_omega(self):
         self.get_product_omega().click()
         self.get_cart().click()
         self.refresh_q()
 
-    # Еще в разработке
+    # Добавить Omega в Корзину (мой)
+    def add_product_omega_in_cart(self):
+        self.get_product_omega().click()
+        print()
+        print("Omega добавлен в корзину")
+
+    # Перейти в Корзину (мой)
     def click_get_cart(self):
         self.get_cart().click()
         self.refresh_q()

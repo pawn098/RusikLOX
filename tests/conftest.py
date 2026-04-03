@@ -5,6 +5,7 @@ from selenium.webdriver.chrome.service import Service
 
 @pytest.fixture()
 def set_up():
+    print()
     print('Начало теста')
     options = webdriver.ChromeOptions()
     options.add_experimental_option('detach', True)
