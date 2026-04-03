@@ -20,6 +20,8 @@ class FinalyPage(BasePage):
 
 
     # Действие
+
+    # Скопировать Корзину
     def click_button_repeat_order(self):
         self.get_button_repeat_order().click()
         print('Корзина скопирована')
