@@ -2,6 +2,7 @@ from pages.base_page import BasePage
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from faker import Faker
 
 
 class PlacePage(BasePage):
@@ -9,9 +10,11 @@ class PlacePage(BasePage):
         super().__init__(driver)
         self.driver = driver
 
-    NAME = 'Головач Лена'
-    PHONE = '+7(777)777-77-77'
-    CITY = 'Москва'
+    fake = Faker('ru_RU')  # Для русских данных
+
+    NAME = fake.name()
+    PHONE = fake.phone_number()
+    CITY = fake.address()
 
     #locator
     name = "(//input[@id='client_contact_name'])[1]"
@@ -38,9 +41,14 @@ class PlacePage(BasePage):
     #Действие
     def confirm_the_order(self):
         self.get_name().send_keys(self.NAME)
+        print('Имя заполнено')
         self.get_phone().send_keys(self.PHONE)
+        print('Телефон заполнен')
         self.get_city().send_keys(self.CITY)
+        print('Адрес заполнен')
         self.move_to_elements(self.get_button_confirm_the_order())
         self.get_checkbox().click()
+        print('Чекбокс активирован')
         self.get_button_confirm_the_order().click()
+        print('Заказ оформлен')
 

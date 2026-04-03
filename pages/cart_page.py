@@ -28,4 +28,6 @@ class CardPage(BasePage):
     # Ввести PROMOCODE в поле "Промокод" и нажать кнопку "Оформить заказ"
     def place_an_order(self):
         self.get_promo().send_keys(self.PROMOCODE)
+        print('Промокод введен')
         self.get_button_place_an_order().click()
+        print('Переход на оформление заказа')
