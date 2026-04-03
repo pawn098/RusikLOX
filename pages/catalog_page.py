@@ -24,13 +24,21 @@ class CatalogPage(BasePage):
 
 
     #Действие
+
+    # Добавить D3 в корзину и перейти в корзину
     def click_get_product_D3_2000_ME_cart(self):
         self.get_product_D3_2000_ME().click()
         self.get_cart().click()
         self.refresh_q()
 
+    # Добавить Omega в корзину и перейти в корзину
     def click_get_product_omega(self):
         self.get_product_omega().click()
+        self.get_cart().click()
+        self.refresh_q()
+
+    # Еще в разработке
+    def click_get_cart(self):
         self.get_cart().click()
         self.refresh_q()
 
