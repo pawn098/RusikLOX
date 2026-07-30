@@ -11,7 +11,7 @@ def test_order_d3(set_up):
     CP.add_product_d3_in_cart()         # Добавить D3 в Корзину
     CP.click_get_cart()                 # Перейти в Корзину
 
-    for i in range(2):
+    for i in range(10):
 
         CARDP = CardPage(set_up)
         CARDP.place_an_order()              # Ввести PROMOCODE в поле "Промокод" и нажать кнопку "Оформить заказ"
@@ -30,7 +30,7 @@ def test_order_omega(set_up):
     CP.add_product_omega_in_cart()          # Добавить Omega в Корзину
     CP.click_get_cart()                     # Перейти в Корзину
 
-    for i in range(2):
+    for i in range(5):
 
         CARDP = CardPage(set_up)
         CARDP.place_an_order()              # Ввести PROMOCODE в поле "Промокод" и нажать кнопку "Оформить заказ"
@@ -47,12 +47,13 @@ def test_order_omega(set_up):
 
 
 def test_order_omega_and_d3(set_up):
+
     CP = CatalogPage(set_up)
     CP.add_product_omega_in_cart()            # Добавить Omega в Корзину
     CP.add_product_d3_in_cart()               # Добавить D3 в Корзину
     CP.click_get_cart()                       # Перейти в Корзину
 
-    for i in range(1):
+    for i in range(12):
 
         CARDP = CardPage(set_up)
         CARDP.place_an_order()             # Ввести PROMOCODE в поле "Промокод" и нажать кнопку "Оформить заказ"

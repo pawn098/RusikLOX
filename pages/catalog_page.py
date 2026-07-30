@@ -10,9 +10,10 @@ class CatalogPage(BasePage):
         self.driver = driver
 
 #locator
-    product_omega = "(//button[text()='В корзину'])[1]"
-    product_D3_2000_ME = "(//button[text()='В корзину'])[2]"
+    product_omega = "//form[@data-product-id='472262821']//button[@type='submit']"
+    product_D3_2000_ME = "//form[@data-product-id='472263032']//button[@type='submit']"
     cart = "//a[@class='header__control-btn header__cart']"
+    snackbar = "//div[contains(@class,'micro-alert-item') and contains(., 'Товар добавлен')]"
 
     def get_product_D3_2000_ME(self):
          return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.product_D3_2000_ME)))
@@ -20,33 +21,30 @@ class CatalogPage(BasePage):
          return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.product_omega)))
     def get_cart(self):
          return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.cart)))
+    def wait_snackbar_disappear(self):
+        WebDriverWait(self.driver, 10).until(EC.invisibility_of_element_located((By.XPATH, self.snackbar)))
 
 
 
     #Действие
 
-    # Добавить D3 в Корзину и перейти в Корзину (потом удалить)
-    def click_get_product_D3_2000_ME_cart(self):
-        self.get_product_D3_2000_ME().click()
-        self.get_cart().click()
-        self.refresh_q()
+
 
     # Добавить D3 в Корзину (мой)
     def add_product_d3_in_cart(self):
         self.get_product_D3_2000_ME().click()
-        print()
+        self.wait_snackbar_disappear()        # Чтобы успеть сработать клику и пропустить снекбар (перекрывает Корзину)
+        self.refresh_q()
         print("D3 добавлен в корзину")
 
-    # Добавить Omega в Корзину и перейти в Корзину (потом удалить)
-    def click_get_product_omega(self):
-        self.get_product_omega().click()
-        self.get_cart().click()
-        self.refresh_q()
+
 
     # Добавить Omega в Корзину (мой)
     def add_product_omega_in_cart(self):
-        self.get_product_omega().click()
         print()
+        self.get_product_omega().click()
+        self.wait_snackbar_disappear()        # Чтобы успеть сработать клику и пропустить снекбар (перекрывает Корзину)
+        self.refresh_q()
         print("Omega добавлен в корзину")
 
     # Перейти в Корзину (мой)

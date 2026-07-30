@@ -3,6 +3,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from faker import Faker
+import time
 
 
 class PlacePage(BasePage):
@@ -13,7 +14,7 @@ class PlacePage(BasePage):
     fake = Faker('ru_RU')  # Для генерации тестовых данных на русском языке
     NAME = fake.name()
     PHONE = fake.phone_number()
-    CITY = fake.address()
+    CITY = fake.city()
 
     #locator
     name = "(//input[@id='client_contact_name'])[1]"
@@ -49,10 +50,12 @@ class PlacePage(BasePage):
         self.get_city().send_keys(self.CITY)
         print('Адрес заполнен')
 
-        self.move_to_elements(self.get_button_confirm_the_order())
+        self.move_to_element(self.get_button_confirm_the_order())
+        time.sleep(2)
         self.get_checkbox().click()
         print('Чекбокс активирован')
 
         self.get_button_confirm_the_order().click()
+        WebDriverWait(self.driver, 10).until(EC.url_contains("/orders/")) # Ожидание перехода на страницу успеха
         print('Заказ оформлен')
 
